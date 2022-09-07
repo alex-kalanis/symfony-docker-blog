@@ -1,0 +1,74 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+index:
+  path:     /
+  controller: App\Controller\PublicController::listing
+
+admin:
+  path:     /admin
+  controller: App\Controller\AdminController::listing
+
+admin-logs:
+  path:     /admin/logs
+  controller: App\Controller\AdminController::logs
+
+articles:
+  path:     /admin/articles
+  controller: App\Controller\ArticlesController::listing
+
+article-add:
+  path:     /admin/articles/add
+  controller: App\Controller\ArticlesController::add
+
+article-edit:
+  path:     /admin/article-edit/{id}
+  controller: App\Controller\ArticlesController::edit
+
+article-preview:
+  path:     /admin/article-preview/{id}
+  controller: App\Controller\ArticlesController::preview
+
+article-approve:
+  path:     /admin/article-approve/{id}
+  controller: App\Controller\ArticlesController::approve
+
+article-remove:
+  path:     /admin/article-remove/{id}
+  controller: App\Controller\ArticlesController::remove
+
+users:
+  path:     /admin/users
+  controller: App\Controller\UsersController::listing
+
+user-add:
+  path:     /admin/user/add
+  controller: App\Controller\UsersController::add
+
+user-edit:
+  path:     /admin/user-edit/{id}
+  controller: App\Controller\UsersController::edit
+
+user-remove:
+  path:     /admin/user-remove/{id}
+  controller: App\Controller\UsersController::remove
+
+configs:
+  path:     /admin/configs
+  controller: App\Controller\ConfigsController::listing
+
+config-add:
+  path:     /admin/config/add
+  controller: App\Controller\ConfigsController::add
+
+config-edit:
+  path:     /admin/config-edit/{id}
+  controller: App\Controller\ConfigsController::edit
+
+config-remove:
+  path:     /admin/config-remove/{id}
+  controller: App\Controller\ConfigsController::remove
+
+display:
+  path:     /{slug}
+  controller: App\Controller\PublicController::single

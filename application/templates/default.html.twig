@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }} :: {{ articles_list }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">{{ blog_title }}</h1>
+    <div class="container">
+        {% for article in articles %}
+            <div>
+                <h2>{{ translate.title(articles) }}</h2>
+                <div>{{ translate.published(articles) }}</div>
+                <div>{{ translate.preview(articles) }}</div>
+            </div>
+            <hr />
+        {% endfor %}
+    </div>
+    {{ pager }}
+{% endblock %}

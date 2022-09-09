@@ -10,17 +10,16 @@ namespace kalanis\kw_storage;
  */
 class Helper
 {
-    public static function initCache(): Storage
+    public static function initStorage(): Storage
     {
-        return new Storage(new Storage\Factory(
-            new Storage\Target\Factory(),
-            new Storage\Format\Factory(),
-            new Storage\Key\Factory()
-        ));
+        return new Storage(static::initFactory());
     }
 
-    public static function initIntoStatic(): void
+    public static function initFactory(): Storage\Factory
     {
-        StaticCache::setStorage(static::initCache());
+        return new Storage\Factory(
+            new Storage\Key\Factory(),
+            new Storage\Target\Factory()
+        );
     }
 }

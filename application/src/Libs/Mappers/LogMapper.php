@@ -18,11 +18,11 @@ class LogMapper extends Mappers\Database\ADatabase
     {
         $this->setSource('docker');
         $this->setTable('logs');
-        $this->setRelation('id', 'l_id');
-        $this->setRelation('type', 'l_type');
-        $this->setRelation('source', 'l_source');
-        $this->setRelation('name', 'l_name');
-        $this->setRelation('trace', 'l_trace');
+        $this->setRelation('id', 'log_id');
+        $this->setRelation('type', 'log_type');
+        $this->setRelation('source', 'log_source');
+        $this->setRelation('name', 'log_name');
+        $this->setRelation('trace', 'log_trace');
         $this->addPrimaryKey('id');
     }
 }

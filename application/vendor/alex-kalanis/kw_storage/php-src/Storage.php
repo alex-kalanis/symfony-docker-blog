@@ -3,6 +3,10 @@
 namespace kalanis\kw_storage;
 
 
+use kalanis\kw_storage\Interfaces\IStorage;
+use Traversable;
+
+
 /**
  * Class Storage
  * @package kalanis\kw_storage
@@ -10,7 +14,7 @@ namespace kalanis\kw_storage;
  */
 class Storage
 {
-    /** @var Storage\Storage|null */
+    /** @var IStorage|null */
     protected $storage = null;
     /** @var Storage\Factory */
     protected $storageFactory = null;
@@ -21,7 +25,7 @@ class Storage
     }
 
     /**
-     * @param mixed|Interfaces\IStorage|array|string|null $storageParams
+     * @param mixed|Interfaces\ITarget|array|string|null $storageParams
      */
     public function init($storageParams): void
     {
@@ -37,7 +41,7 @@ class Storage
     public function exists(string $key): bool
     {
         $this->checkStorage();
-        return $this->storage->exists($key);
+        return $this->storage->/** @scrutinizer ignore-call */exists($key);
     }
 
     /**
@@ -49,7 +53,7 @@ class Storage
     public function get(string $key)
     {
         $this->checkStorage();
-        $content = $this->storage->read($key);
+        $content = $this->storage->/** @scrutinizer ignore-call */read($key);
         return empty($content) ? null : $content ;
     }
 
@@ -64,7 +68,7 @@ class Storage
     public function set(string $key, $value, ?int $expire = 8600): bool
     {
         $this->checkStorage();
-        return $this->storage->write($key, $value, $expire);
+        return $this->storage->/** @scrutinizer ignore-call */write($key, $value, $expire);
     }
 
     /**
@@ -79,7 +83,7 @@ class Storage
     {
         $this->checkStorage();
         // safeadd for multithread at any system
-        if ($this->storage->write($key, $value, $expire)) {
+        if ($this->storage->/** @scrutinizer ignore-call */write($key, $value, $expire)) {
             return ( $value == $this->get($key) );
         }
         return false;
@@ -94,7 +98,7 @@ class Storage
     public function increment(string $key): bool
     {
         $this->checkStorage();
-        return $this->storage->increment($key);
+        return $this->storage->/** @scrutinizer ignore-call */increment($key);
     }
 
     /**
@@ -106,18 +110,29 @@ class Storage
     public function decrement(string $key): bool
     {
         $this->checkStorage();
-        return $this->storage->decrement($key);
+        return $this->storage->/** @scrutinizer ignore-call */decrement($key);
     }
 
     /**
      * Return all active storage keys
      * @throws StorageException
-     * @return string[]
+     * @return Traversable<string>
      */
-    public function getAllKeys(): iterable
+    public function getAllKeys(): Traversable
+    {
+        return $this->getMaskedKeys('');
+    }
+
+    /**
+     * Return storage keys with mask
+     * @param string $mask
+     * @throws StorageException
+     * @return Traversable<string>
+     */
+    public function getMaskedKeys(string $mask): Traversable
     {
         $this->checkStorage();
-        return $this->storage->lookup('');
+        return $this->storage->/** @scrutinizer ignore-call */lookup($mask);
     }
 
     /**
@@ -129,7 +144,7 @@ class Storage
     public function delete(string $key): bool
     {
         $this->checkStorage();
-        return $this->storage->remove($key);
+        return $this->storage->/** @scrutinizer ignore-call */remove($key);
     }
 
     /**
@@ -141,7 +156,7 @@ class Storage
     public function deleteMulti(array $keys)
     {
         $this->checkStorage();
-        return $this->storage->removeMulti($keys);
+        return $this->storage->/** @scrutinizer ignore-call */removeMulti($keys);
     }
 
     /**
@@ -171,7 +186,7 @@ class Storage
     public function isConnected(): bool
     {
         $this->checkStorage();
-        return $this->storage->canUse();
+        return $this->storage->/** @scrutinizer ignore-call */canUse();
     }
 
     /**

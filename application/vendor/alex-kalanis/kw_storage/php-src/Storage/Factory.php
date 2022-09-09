@@ -15,32 +15,28 @@ class Factory
 {
     /** @var Target\Factory */
     protected $targetFactory = null;
-    /** @var Format\Factory */
-    protected $formatFactory = null;
     /** @var Key\Factory */
     protected $keyFactory = null;
 
-    public function __construct(Target\Factory $targetFactory, Format\Factory $formatFactory, Key\Factory $keyFactory)
+    public function __construct(Key\Factory $keyFactory, Target\Factory $targetFactory)
     {
         $this->targetFactory = $targetFactory;
-        $this->formatFactory = $formatFactory;
         $this->keyFactory = $keyFactory;
     }
 
     /**
-     * @param mixed|Interfaces\IStorage|array|string|null $storageParams
-     * @return Storage|null
+     * @param mixed|Interfaces\ITarget|array|string|null $storageParams
+     * @return Interfaces\IStorage|null
      */
-    public function getStorage($storageParams): ?Storage
+    public function getStorage($storageParams): ?Interfaces\IStorage
     {
         $storage = $this->targetFactory->getStorage($storageParams);
         if (empty($storage)) {
             return null;
         }
         $publicStorage = new Storage(
-            $storage,
-            $this->formatFactory->getFormat($storage),
-            $this->keyFactory->getKey($storage)
+            $this->keyFactory->getKey($storage),
+            $storage
         );
         $publicStorage->canUse();
         return $publicStorage;

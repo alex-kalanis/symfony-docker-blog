@@ -56,6 +56,10 @@ Postgres
 * user: kalasymfony
 * pass: kalasymfony654
 
+Blog:
+* user: FirstOne
+* pass: systemshare
+
 The aplication itself contains Symfony for basics, kw_mapper, kw_table and
 kw_form for data manipulation and also Clipr for running tasks, so you can
 run things inside php box and with docker syntax also from external environment.

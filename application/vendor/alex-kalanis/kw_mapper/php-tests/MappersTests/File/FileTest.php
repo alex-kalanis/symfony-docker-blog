@@ -9,6 +9,7 @@ use kalanis\kw_mapper\MapperException;
 use kalanis\kw_mapper\Mappers;
 use kalanis\kw_mapper\Records\ASimpleRecord;
 use kalanis\kw_mapper\Records\PageRecord;
+use kalanis\kw_storage\Interfaces\IStorage;
 use kalanis\kw_storage\Storage;
 use kalanis\kw_storage\StorageException;
 use Traversable;
@@ -120,12 +121,11 @@ class FileTest extends CommonTestClass
 
 class XFailContent extends Mappers\File\PageContent
 {
-    public function getStorage(): Storage\Storage
+    public function getStorage(): IStorage
     {
         return new XFailStorage(
-            new Storage\Target\Volume(),
-            new Storage\Format\Raw(),
-            new Storage\Key\DefaultKey()
+            new Storage\Key\DefaultKey(),
+            new Storage\Target\Volume()
         );
     }
 }
@@ -133,12 +133,11 @@ class XFailContent extends Mappers\File\PageContent
 
 class XFailKeyValue extends Mappers\File\KeyValue
 {
-    public function getStorage(): Storage\Storage
+    public function getStorage(): IStorage
     {
         return new XFailStorage(
-            new Storage\Target\Volume(),
-            new Storage\Format\Raw(),
-            new Storage\Key\DefaultKey()
+            new Storage\Key\DefaultKey(),
+            new Storage\Target\Volume()
         );
     }
 }

@@ -5,6 +5,8 @@ namespace App\Libs\Mappers;
 use kalanis\kw_mapper\Interfaces\IEntryType;
 use kalanis\kw_mapper\Records;
 use kalanis\kw_mapper\Storage;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
@@ -21,7 +23,7 @@ use kalanis\kw_mapper\Storage;
  * @property \App\Libs\Mappers\ClassRecord[] $classes
  * @property \App\Libs\Mappers\ArticleRecord[] $articles
  */
-class UserRecord extends Records\ASimpleRecord
+class UserRecord extends Records\ASimpleRecord implements UserInterface, PasswordAuthenticatedUserInterface
 {
     protected function addEntries(): void
     {
@@ -36,5 +38,51 @@ class UserRecord extends Records\ASimpleRecord
         $this->addEntry('classes', IEntryType::TYPE_ARRAY, []);
         $this->addEntry('articles', IEntryType::TYPE_ARRAY, []);
         $this->setMapper('\App\Libs\Mappers\UserMapper');
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER', 'ROLE_ADMIN'];
+    }
+
+    public function getPassword(): ?string
+    {
+        return strval($this->pass);
+    }
+
+    public function setPassword(string $pass): void
+    {
+        $this->pass = $pass;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // nothing need
+    }
+
+    public function getUsername()
+    {
+        return $this->login;
+    }
+
+    public function getUserIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getUuid(): ?string
+    {
+        return empty($this->id) ? null : strval($this->id);
+    }
+
+    public function setUuid(string $uuid): self
+    {
+        $this->id = $uuid;
+        return $this;
     }
 }

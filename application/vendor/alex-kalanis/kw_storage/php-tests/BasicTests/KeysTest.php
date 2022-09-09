@@ -6,14 +6,10 @@ namespace BasicTests;
 use CommonTestClass;
 use kalanis\kw_storage\Storage\Key;
 use kalanis\kw_storage\Storage\Target;
-use kalanis\kw_storage\StorageException;
 
 
 class KeysTest extends CommonTestClass
 {
-    /**
-     * @throws StorageException
-     */
     public function testInit(): void
     {
         $factory = new Key\Factory();
@@ -21,9 +17,6 @@ class KeysTest extends CommonTestClass
         $this->assertInstanceOf('\kalanis\kw_storage\Storage\Key\DefaultKey', $factory->getKey(new \TargetMock()));
     }
 
-    /**
-     * @throws StorageException
-     */
     public function testDefaultKey(): void
     {
         $key = new Key\DefaultKey();
@@ -31,9 +24,6 @@ class KeysTest extends CommonTestClass
         $this->assertEquals('ear/a4vw-z.7v2!3#z', $key->fromSharedKey('ear/a4vw-z.7v2!3#z'));
     }
 
-    /**
-     * @throws StorageException
-     */
     public function testDirKey(): void
     {
         $key = new Key\DirKey();

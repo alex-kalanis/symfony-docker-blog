@@ -1,0 +1,31 @@
+{
+    "name": "alex-kalanis/kw_confs",
+    "description": "Configs for accessing settings in KWCMS",
+    "keywords": [
+        "config",
+        "confs"
+    ],
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "require": {
+        "alex-kalanis/kw_paths": ">=1.0",
+        "php": ">=7.2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": ">=7.2"
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "kalanis\\kw_confs\\": "php-src/"
+        }
+    },
+    "scripts": {
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -18,10 +18,10 @@ class GroupMapper extends Mappers\Database\ADatabase
     {
         $this->setSource('docker');
         $this->setTable('groups');
-        $this->setRelation('id', 'g_id');
-        $this->setRelation('name', 'g_name');
-        $this->setRelation('desc', 'g_desc');
-        $this->setRelation('deleted', 'g_deleted');
+        $this->setRelation('id', 'gr_id');
+        $this->setRelation('name', 'gr_name');
+        $this->setRelation('desc', 'gr_desc');
+        $this->setRelation('deleted', 'gr_deleted');
         $this->addPrimaryKey('id');
     }
 }

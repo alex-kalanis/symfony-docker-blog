@@ -6,19 +6,33 @@ use kalanis\kw_storage\Storage;
 
 class CommonTestClass extends \PHPUnit\Framework\TestCase
 {
-    protected function getTestDir(): string
+    protected function rmDir(string $path): void
     {
-        return implode(DIRECTORY_SEPARATOR, [__DIR__, 'tmp']) . DIRECTORY_SEPARATOR;
+        if (is_dir($this->getTestDir() . $path)) {
+            rmdir($this->getTestDir() . $path);
+        }
     }
 
-    protected function mockTestFile(): string
+    protected function rmFile(string $path): void
     {
-        return $this->getTestDir() . 'testingFile.txt';
+        if (is_file($this->getTestDir() . $path)) {
+            unlink($this->getTestDir() . $path);
+        }
+    }
+
+    protected function mockTestFile(string $pos = '', bool $pre = true): string
+    {
+        return ($pre ? $this->getTestDir() : '') . 'testingFile' . $pos . '.txt';
+    }
+
+    protected function getTestDir(): string
+    {
+        return implode(DIRECTORY_SEPARATOR, [__DIR__, 'tmp', '']);
     }
 }
 
 
-class TargetMock implements \kalanis\kw_storage\Interfaces\IStorage
+class TargetMock implements \kalanis\kw_storage\Interfaces\ITarget
 {
     public function check(string $key): bool
     {
@@ -45,7 +59,7 @@ class TargetMock implements \kalanis\kw_storage\Interfaces\IStorage
         return false;
     }
 
-    public function lookup(string $key): iterable
+    public function lookup(string $path): \Traversable
     {
         yield from [];
     }
@@ -78,25 +92,16 @@ class MockKey implements \kalanis\kw_storage\Interfaces\IKey
 
 class MockKeyFactory extends Storage\Key\Factory
 {
-    public function getKey(Interfaces\IStorage $storage): Interfaces\IKey
+    public function getKey(Interfaces\ITarget $storage): Interfaces\IKey
     {
         return new MockKey();
     }
 }
 
 
-class MockFormatFactory extends Storage\Format\Factory
-{
-    public function getFormat(Interfaces\IStorage $storage): Interfaces\IFormat
-    {
-        return new Storage\Format\Raw();
-    }
-}
-
-
 class MockTargetFactory extends Storage\Target\Factory
 {
-    public function getStorage($params): Interfaces\IStorage
+    public function getStorage($params): Interfaces\ITarget
     {
         return new \TargetMock();
     }

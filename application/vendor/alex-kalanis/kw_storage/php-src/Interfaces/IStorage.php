@@ -7,50 +7,60 @@ use kalanis\kw_storage\StorageException;
 use Traversable;
 
 
+/**
+ * Interface IStorage
+ * @package kalanis\kw_storage\Interfaces
+ * Basic operations over every storage
+ */
 interface IStorage
 {
     /**
-     * @param string $key
+     * Check if target storage is usable
      * @return bool
      */
-    public function check(string $key): bool;
+    public function canUse(): bool;
 
     /**
-     * @param string $key
-     * @return bool
-     */
-    public function exists(string $key): bool;
-
-    /**
-     * @param string $key
-     * @throws StorageException
-     * @return string
-     */
-    public function load(string $key);
-
-    /**
-     * @param string $key
+     * Create new record in storage
+     * @param string $sharedKey
      * @param mixed $data
      * @param int|null $timeout
      * @throws StorageException
      * @return bool
      */
-    public function save(string $key, $data, ?int $timeout = null): bool;
+    public function write(string $sharedKey, $data, ?int $timeout = null): bool;
 
     /**
-     * @param string $key
+     * Read storage record
+     * @param string $sharedKey
+     * @throws StorageException
+     * @return mixed
+     */
+    public function read(string $sharedKey);
+
+    /**
+     * Delete storage record - usually on finish or discard
+     * @param string $sharedKey
      * @throws StorageException
      * @return bool
      */
-    public function remove(string $key): bool;
+    public function remove(string $sharedKey): bool;
 
     /**
-     * Lookup through keys in storage
-     * @param string $key
+     * Has data in storage? Mainly for testing
+     * @param string $sharedKey
      * @throws StorageException
-     * @return string[]
+     * @return bool
      */
-    public function lookup(string $key): iterable;
+    public function exists(string $sharedKey): bool;
+
+    /**
+     * What data is in storage?
+     * @param string $mask
+     * @throws StorageException
+     * @return Traversable<string>
+     */
+    public function lookup(string $mask): Traversable;
 
     /**
      * Increment index in key

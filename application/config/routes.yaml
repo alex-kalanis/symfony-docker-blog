@@ -9,6 +9,14 @@ admin:
   path:     /admin
   controller: App\Controller\AdminController::listing
 
+app_login:
+  path:     /login
+  controller: App\Controller\AdminController::listing
+
+app_logout:
+  path:     /logout
+  controller: App\Controller\AdminController::listing
+
 admin-logs:
   path:     /admin/logs
   controller: App\Controller\AdminController::logs
@@ -26,7 +34,7 @@ article-edit:
   controller: App\Controller\ArticlesController::edit
 
 article-preview:
-  path:     /admin/article-preview/{id}
+  path:     /admin/article-preview
   controller: App\Controller\ArticlesController::preview
 
 article-approve:

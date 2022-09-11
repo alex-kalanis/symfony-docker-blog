@@ -9,10 +9,10 @@
             <div>
                 <h2>{{ translate.title(articles) }}</h2>
                 <div>{{ translate.published(articles) }}</div>
-                <div>{{ translate.preview(articles) }}</div>
+                <div>{{ translate.preview(articles)|raw }}</div>
             </div>
             <hr />
         {% endfor %}
     </div>
-    {{ pager }}
+    {{ pager|raw }}
 {% endblock %}

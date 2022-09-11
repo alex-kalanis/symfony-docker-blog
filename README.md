@@ -73,3 +73,6 @@ the docker if there already are all necessary files to run configurations
 *(system_user.sql and first_db_run.sh)* or exists *mysql socket*. If not,
 you will need to process files manually via Adminer. Then re-run *install.sh*
 or type commands directly into CLI. The waiting time is around 20 seconds.
+
+Now I halt with authentication problems - it throws an error somewhere
+passing through the core and I do not understand what I shall pass.

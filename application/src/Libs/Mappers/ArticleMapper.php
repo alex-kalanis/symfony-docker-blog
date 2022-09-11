@@ -31,10 +31,10 @@ class ArticleMapper extends Mappers\Database\ADatabase
 
     /**
      * @throws MapperException
-     * @return ArticleRecord[]
+     * @return int
      * contains OR in clause
      */
-    public function countAvailableArticles(): array
+    public function countAvailableArticles(): int
     {
         $query = 'SELECT COUNT(`a_id`) '
             . 'FROM ' . $this->getTable() . ' WHERE `a_publish` IS NOT NULL AND `a_publish` > :date AND (`a_deleted` IS NULL OR `a_deleted` < :date)';

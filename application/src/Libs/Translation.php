@@ -4,7 +4,7 @@ namespace App\Libs;
 
 
 use App\Libs\Mappers\ArticleRecord;
-use Michelf\MarkdownExtra\Interfaces\IMarkdown;
+use Michelf\MarkdownInterface;
 
 
 /**
@@ -14,12 +14,12 @@ use Michelf\MarkdownExtra\Interfaces\IMarkdown;
  */
 class Translation
 {
-    /** @var IMarkdown */
+    /** @var MarkdownInterface */
     protected $markdown = null;
     /** @var string */
     protected $dateFormat = '';
 
-    public function __construct(IMarkdown $markdown, string $dateFormat = 'Y-m-d')
+    public function __construct(MarkdownInterface $markdown, string $dateFormat = 'Y-m-d')
     {
         $this->markdown = $markdown;
         $this->dateFormat = $dateFormat;

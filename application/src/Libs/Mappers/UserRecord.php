@@ -85,4 +85,9 @@ class UserRecord extends Records\ASimpleRecord implements UserInterface, Passwor
         $this->id = $uuid;
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->display;
+    }
 }

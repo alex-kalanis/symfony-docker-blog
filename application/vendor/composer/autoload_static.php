@@ -507,6 +507,7 @@ class ComposerStaticInit24a9a7f17ea7f061bc2dbcc83c72798b
         'App\\Libs\\Tables\\LogTable' => __DIR__ . '/../..' . '/src/Libs/Tables/LogTable.php',
         'App\\Libs\\Tables\\UserTable' => __DIR__ . '/../..' . '/src/Libs/Tables/UserTable.php',
         'App\\Libs\\Translation' => __DIR__ . '/../..' . '/src/Libs/Translation.php',
+        'App\\Security\\UserProvider' => __DIR__ . '/../..' . '/src/Security/UserProvider.php',
         'App\\Tasks\\Database\\APhinx' => __DIR__ . '/../..' . '/src/Tasks/Database/APhinx.php',
         'App\\Tasks\\Database\\Migrate' => __DIR__ . '/../..' . '/src/Tasks/Database/Migrate.php',
         'App\\Tasks\\Database\\Rollback' => __DIR__ . '/../..' . '/src/Tasks/Database/Rollback.php',

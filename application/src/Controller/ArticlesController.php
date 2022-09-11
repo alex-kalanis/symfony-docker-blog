@@ -7,7 +7,7 @@ use App\Libs;
 use kalanis\kw_forms\Adapters\InputVarsAdapter;
 use kalanis\kw_mapper\Adapters\DataExchange;
 use kalanis\kw_mapper\Search\Search;
-use Michelf\MarkdownExtra\MarkdownExtra;
+use Michelf\MarkdownExtra;
 use Symfony\Component\HttpFoundation\Request;
 
 

@@ -37,6 +37,7 @@ return array(
     'App\\Libs\\Tables\\LogTable' => $baseDir . '/src/Libs/Tables/LogTable.php',
     'App\\Libs\\Tables\\UserTable' => $baseDir . '/src/Libs/Tables/UserTable.php',
     'App\\Libs\\Translation' => $baseDir . '/src/Libs/Translation.php',
+    'App\\Security\\UserProvider' => $baseDir . '/src/Security/UserProvider.php',
     'App\\Tasks\\Database\\APhinx' => $baseDir . '/src/Tasks/Database/APhinx.php',
     'App\\Tasks\\Database\\Migrate' => $baseDir . '/src/Tasks/Database/Migrate.php',
     'App\\Tasks\\Database\\Rollback' => $baseDir . '/src/Tasks/Database/Rollback.php',

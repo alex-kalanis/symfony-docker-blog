@@ -12,7 +12,7 @@ use kalanis\kw_pager\BasicPager;
 use kalanis\kw_paging\Positions;
 use kalanis\kw_paging\Render\SimplifiedPager;
 use kalanis\kw_table\core\Connector\PageLink;
-use Michelf\MarkdownExtra\MarkdownExtra;
+use Michelf\MarkdownExtra;
 
 
 class PublicController extends AAppController
